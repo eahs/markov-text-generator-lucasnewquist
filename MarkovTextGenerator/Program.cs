@@ -38,7 +38,7 @@ public class Program
         // Generates a completely new sentence based on the next word.
 
         Console.WriteLine("Alright, now lets generate a sentence. Give a word to start it!");
-        Console.WriteLine("> ");
+        Console.Write("> ");
 
         word = Console.ReadLine() ?? string.Empty;
         var nextSentence = chain.GenerateSentence(word);
