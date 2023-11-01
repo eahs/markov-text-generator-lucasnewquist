@@ -31,6 +31,56 @@ public class Chain
     /// <param name="sentence"></param>
     public void AddSentence(string? sentence)
     {
+
+        String first = "";
+        String second = "";
+        Boolean cont = true;
+
+        for (int i = 0; i < sentence.Length; i++)
+        {
+            
+
+            first = second;
+            second = "";
+
+            for (int j = 0; j < sentence.Length; j++)
+            {
+
+
+                if (j + i == sentence.Length)
+                {
+                    second = sentence.Substring(i, sentence.Length - i);
+                    cont = false;
+                    break;
+                }
+                else if (sentence.Substring(j + i, 1) == " " && i == 0)
+                {
+                    first = sentence.Substring(i, j);
+                    i += j;
+                    
+                }
+                else if (sentence.Substring(j + i, 1) == " ")
+                {
+                    second = sentence.Substring(i, j);
+                    i += j;
+                    break;
+                }
+
+            }
+
+            Console.WriteLine("Pairs:" + "first:" + first + " second:" + second);
+
+            AddPair(first, second);
+
+            if (!cont)
+            {
+                AddPair(second, "");
+                Console.WriteLine("Pairs:" + "first:" + second + " second:" + "");
+                break;
+            }
+
+        }
+
         // TODO: Break sentence up into word pairs
         // TODO: Add each word pair to the chain by calling AddPair
         // TODO: The last word of any sentence will be paired up with an empty string to show that it is the end of the sentence
@@ -81,11 +131,13 @@ public class Chain
         {
             List<Word> choices = Words[word];
             double test = _rand.NextDouble();
-
-            Console.WriteLine("I picked the number " + test);
+            test = test * choices.Count;
+            return choices[(int)test].ToString();
         }
-
-        return "idkbbq";
+        else
+        {
+            return "Invalid";
+        }
     }
 
     /// <summary>
@@ -96,7 +148,22 @@ public class Chain
     /// <returns></returns>
     public string GenerateSentence(string startingWord)
     {
-        return "";
+        var sentence = startingWord;
+
+
+        while (true)
+        {
+            var newWord = GetNextWord(startingWord);
+            sentence = sentence + " " + newWord;
+            startingWord = newWord;
+
+            if (newWord == "")
+            {
+                break;
+            }
+        }
+
+        return sentence;
     }
 
     /// <summary>
