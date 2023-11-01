@@ -34,6 +34,17 @@ public class Program
         var word = Console.ReadLine() ?? string.Empty;
         var nextWord = chain.GetNextWord(word);
         Console.WriteLine("I predict the next word will be " + nextWord);
+
+        // Generates a completely new sentence based on the next word.
+
+        Console.WriteLine("Alright, now lets generate a sentence. Give a word to start it!");
+        Console.Write("> ");
+
+        word = Console.ReadLine() ?? string.Empty;
+        var nextSentence = chain.GenerateSentence(word);
+
+        Console.WriteLine("Here is your new sentence:");
+        Console.WriteLine(nextSentence);
     }
 
     static void LoadText(string filename, Chain chain)
