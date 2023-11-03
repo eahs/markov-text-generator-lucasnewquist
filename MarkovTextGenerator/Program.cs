@@ -36,15 +36,18 @@ public class Program
         Console.WriteLine("I predict the next word will be " + nextWord);
 
         // Generates a completely new sentence based on the next word.
+        while (true)
+        {
 
-        Console.WriteLine("Alright, now lets generate a sentence. Give a word to start it!");
-        Console.Write("> ");
+            Console.WriteLine("Alright, now lets generate a sentence. Give a word to start it!");
+            Console.Write("> ");
 
-        word = Console.ReadLine() ?? string.Empty;
-        var nextSentence = chain.GenerateSentence(word);
+            word = Console.ReadLine() ?? string.Empty;
+            var nextSentence = chain.GenerateSentence(word);
 
-        Console.WriteLine("Here is your new sentence:");
-        Console.WriteLine(nextSentence);
+            Console.WriteLine("Here is your new sentence:");
+            Console.WriteLine(nextSentence);
+        }
     }
 
     static void LoadText(string filename, Chain chain)

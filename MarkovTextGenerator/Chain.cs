@@ -1,4 +1,6 @@
-﻿namespace MarkovTextGenerator;
+﻿using System.Diagnostics.Metrics;
+
+namespace MarkovTextGenerator;
 
 public class Chain
 {
@@ -55,9 +57,12 @@ public class Chain
                 }
                 else if (sentence.Substring(j + i, 1) == " " && i == 0)
                 {
+                   
                     first = sentence.Substring(i, j);
+                    Console.WriteLine(first);
                     i += j;
-                    
+                    j = 0;
+
                 }
                 else if (sentence.Substring(j + i, 1) == " ")
                 {
@@ -66,7 +71,11 @@ public class Chain
                     break;
                 }
 
+                
+
             }
+
+            
 
             Console.WriteLine("Pairs:" + "first:" + first + " second:" + second);
 
@@ -151,6 +160,8 @@ public class Chain
         var sentence = startingWord;
 
         // This is a little broken but it seems to be random
+        int counter = 0;
+
         while (true)
         {
             var newWord = GetNextWord(startingWord);
@@ -161,6 +172,14 @@ public class Chain
             {
                 break;
             }
+
+            if (counter > 30)
+            {
+                Console.WriteLine("invalid");
+                break;
+            }
+
+            counter++;
         }
 
         return sentence;
