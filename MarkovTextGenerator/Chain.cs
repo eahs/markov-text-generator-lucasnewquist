@@ -150,7 +150,7 @@ public class Chain
     {
         var sentence = startingWord;
 
-
+        // This is a little broken but it seems to be random
         while (true)
         {
             var newWord = GetNextWord(startingWord);
